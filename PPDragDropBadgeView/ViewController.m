@@ -21,13 +21,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    PPDragDropBadgeView* badgeView \
+    _badgeView \
     = [[PPDragDropBadgeView alloc] initWithSuperView:self.testView
                                             location:CGPointMake(0,0)
                                               radius:10.0f dragdropCompletion:^{
                                                              NSLog(@"Drag drop done.");
                                                }];
-    badgeView.text = @"6";
+    _badgeView.text = @"6";
     
     [self onApplyButtonPressed:nil];
 }
@@ -50,6 +50,7 @@
     }
 
     _badgeView.location = location;
+
     _badgeView.radius = [self.radiusTextField.text floatValue];
     
     UIColor* tintColor;

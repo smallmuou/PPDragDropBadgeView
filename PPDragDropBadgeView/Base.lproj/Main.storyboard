@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -19,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rKd-jb-bCm">
-                                <rect key="frame" x="140" y="0.0" width="320" height="263"/>
+                                <rect key="frame" x="140" y="20" width="320" height="263"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gs5-Jj-uVd">
                                         <rect key="frame" x="32" y="11" width="74" height="21"/>
@@ -110,26 +109,26 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="8qp-d6-gBL"/>
-                                    <constraint firstAttribute="height" constant="263" id="gle-6L-oC4"/>
+                                    <constraint firstAttribute="width" constant="320" id="Ydx-Q4-3vP"/>
+                                    <constraint firstAttribute="height" constant="263" id="fB9-5O-Wcr"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SoB-TC-E8L">
                                 <rect key="frame" x="200" y="316" width="200" height="96"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="GVa-Wd-xqV"/>
-                                    <constraint firstAttribute="height" constant="96" id="MTS-3M-bdc"/>
+                                    <constraint firstAttribute="width" constant="200" id="MFr-3N-NNk"/>
+                                    <constraint firstAttribute="height" constant="96" id="xjY-sp-fxA"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="rKd-jb-bCm" secondAttribute="centerX" id="B3C-Fg-lnA"/>
-                            <constraint firstItem="rKd-jb-bCm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="XTf-Jd-pG3"/>
-                            <constraint firstItem="SoB-TC-E8L" firstAttribute="top" secondItem="rKd-jb-bCm" secondAttribute="bottom" constant="53" id="kvh-Ea-kp5"/>
-                            <constraint firstAttribute="centerX" secondItem="SoB-TC-E8L" secondAttribute="centerX" id="rBj-ot-JNP"/>
-                            <constraint firstItem="SoB-TC-E8L" firstAttribute="top" secondItem="rKd-jb-bCm" secondAttribute="bottom" constant="53" id="ycX-mg-Quc"/>
+                            <constraint firstItem="SoB-TC-E8L" firstAttribute="top" secondItem="rKd-jb-bCm" secondAttribute="bottom" constant="33" id="22R-cC-GtM"/>
+                            <constraint firstItem="rKd-jb-bCm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Wdm-WM-Y2c"/>
+                            <constraint firstAttribute="centerX" secondItem="rKd-jb-bCm" secondAttribute="centerX" id="dyV-fw-TwG"/>
+                            <constraint firstItem="SoB-TC-E8L" firstAttribute="top" secondItem="rKd-jb-bCm" secondAttribute="bottom" constant="33" id="rtL-lD-zGr"/>
+                            <constraint firstAttribute="centerX" secondItem="SoB-TC-E8L" secondAttribute="centerX" id="tKy-RJ-5dQ"/>
                         </constraints>
                     </view>
                     <connections>

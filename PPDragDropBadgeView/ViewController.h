@@ -10,6 +10,14 @@
 
 @interface ViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UISegmentedControl* locationSegmentedControl;
+@property (nonatomic, retain) IBOutlet UITextField* radiusTextField;
+@property (nonatomic, retain) IBOutlet UISegmentedControl* tintColorSegmentedControl;
+@property (nonatomic, retain) IBOutlet UISegmentedControl* borderColorSegmentedControl;
+@property (nonatomic, retain) IBOutlet UITextField* borderWidthTextField;
+@property (nonatomic, retain) IBOutlet UITextField* textTextField;
+
+@property (nonatomic, retain) IBOutlet UIView* testView;
 
 @end
 

@@ -14,6 +14,10 @@
 		E49E18081AC8F5F3008C3009 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49E18071AC8F5F3008C3009 /* Images.xcassets */; };
 		E49E180B1AC8F5F3008C3009 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49E18091AC8F5F3008C3009 /* LaunchScreen.xib */; };
 		E49E18171AC8F5F3008C3009 /* PPDragDropBadgeViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E18161AC8F5F3008C3009 /* PPDragDropBadgeViewTests.m */; };
+		E49E18331AC8F818008C3009 /* PPDragDropBadgeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E49E182B1AC8F818008C3009 /* PPDragDropBadgeView.bundle */; };
+		E49E18341AC8F818008C3009 /* PPDragDropBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E182D1AC8F818008C3009 /* PPDragDropBadgeView.m */; };
+		E49E18351AC8F818008C3009 /* PRTween.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E18301AC8F818008C3009 /* PRTween.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E49E18361AC8F818008C3009 /* PRTweenTimingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E18321AC8F818008C3009 /* PRTweenTimingFunctions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,13 @@
 		E49E18101AC8F5F3008C3009 /* PPDragDropBadgeViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PPDragDropBadgeViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E49E18151AC8F5F3008C3009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E49E18161AC8F5F3008C3009 /* PPDragDropBadgeViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPDragDropBadgeViewTests.m; sourceTree = "<group>"; };
+		E49E182B1AC8F818008C3009 /* PPDragDropBadgeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPDragDropBadgeView.bundle; sourceTree = "<group>"; };
+		E49E182C1AC8F818008C3009 /* PPDragDropBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPDragDropBadgeView.h; sourceTree = "<group>"; };
+		E49E182D1AC8F818008C3009 /* PPDragDropBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPDragDropBadgeView.m; sourceTree = "<group>"; };
+		E49E182F1AC8F818008C3009 /* PRTween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTween.h; sourceTree = "<group>"; };
+		E49E18301AC8F818008C3009 /* PRTween.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTween.m; sourceTree = "<group>"; };
+		E49E18311AC8F818008C3009 /* PRTweenTimingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTweenTimingFunctions.h; sourceTree = "<group>"; };
+		E49E18321AC8F818008C3009 /* PRTweenTimingFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTweenTimingFunctions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +92,7 @@
 		E49E17F91AC8F5F3008C3009 /* PPDragDropBadgeView */ = {
 			isa = PBXGroup;
 			children = (
+				E49E182A1AC8F818008C3009 /* PPDragDropBadgeView */,
 				E49E17FE1AC8F5F3008C3009 /* AppDelegate.h */,
 				E49E17FF1AC8F5F3008C3009 /* AppDelegate.m */,
 				E49E18011AC8F5F3008C3009 /* ViewController.h */,
@@ -117,6 +129,28 @@
 				E49E18151AC8F5F3008C3009 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E49E182A1AC8F818008C3009 /* PPDragDropBadgeView */ = {
+			isa = PBXGroup;
+			children = (
+				E49E182B1AC8F818008C3009 /* PPDragDropBadgeView.bundle */,
+				E49E182C1AC8F818008C3009 /* PPDragDropBadgeView.h */,
+				E49E182D1AC8F818008C3009 /* PPDragDropBadgeView.m */,
+				E49E182E1AC8F818008C3009 /* PRTween */,
+			);
+			path = PPDragDropBadgeView;
+			sourceTree = "<group>";
+		};
+		E49E182E1AC8F818008C3009 /* PRTween */ = {
+			isa = PBXGroup;
+			children = (
+				E49E182F1AC8F818008C3009 /* PRTween.h */,
+				E49E18301AC8F818008C3009 /* PRTween.m */,
+				E49E18311AC8F818008C3009 /* PRTweenTimingFunctions.h */,
+				E49E18321AC8F818008C3009 /* PRTweenTimingFunctions.m */,
+			);
+			path = PRTween;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +236,7 @@
 				E49E18061AC8F5F3008C3009 /* Main.storyboard in Resources */,
 				E49E180B1AC8F5F3008C3009 /* LaunchScreen.xib in Resources */,
 				E49E18081AC8F5F3008C3009 /* Images.xcassets in Resources */,
+				E49E18331AC8F818008C3009 /* PPDragDropBadgeView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +254,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E49E18351AC8F818008C3009 /* PRTween.m in Sources */,
+				E49E18361AC8F818008C3009 /* PRTweenTimingFunctions.m in Sources */,
 				E49E18031AC8F5F3008C3009 /* ViewController.m in Sources */,
+				E49E18341AC8F818008C3009 /* PPDragDropBadgeView.m in Sources */,
 				E49E18001AC8F5F3008C3009 /* AppDelegate.m in Sources */,
 				E49E17FD1AC8F5F3008C3009 /* main.m in Sources */,
 			);
@@ -346,6 +384,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PPDragDropBadgeView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -356,6 +395,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PPDragDropBadgeView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

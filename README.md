@@ -51,6 +51,10 @@ badgeView.text = @"6";
 	@property (nonatomic, strong) NSString* text;
 </pre>
 
+### History
+* v1.0 (March 30, 2015)
+	* First release.
+
 ### License
 The code follows MIT Lisence.
 

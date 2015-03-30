@@ -21,11 +21,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    _badgeView = [[PPDragDropBadgeView alloc] initWithSuperView:self.testView
-                                                       location:CGPointMake(0,0)
-                                                         radius:10.0f dragdropCompletion:^{
+    PPDragDropBadgeView* badgeView \
+    = [[PPDragDropBadgeView alloc] initWithSuperView:self.testView
+                                            location:CGPointMake(0,0)
+                                              radius:10.0f dragdropCompletion:^{
                                                              NSLog(@"Drag drop done.");
-                                                         }];
+                                               }];
+    badgeView.text = @"6";
+    
     [self onApplyButtonPressed:nil];
 }
 

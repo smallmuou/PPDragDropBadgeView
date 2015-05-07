@@ -454,6 +454,7 @@
 				E49E181C1AC8F5F3008C3009 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E49E181D1AC8F5F3008C3009 /* Build configuration list for PBXNativeTarget "PPDragDropBadgeViewTests" */ = {
 			isa = XCConfigurationList;
@@ -462,6 +463,7 @@
 				E49E181F1AC8F5F3008C3009 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

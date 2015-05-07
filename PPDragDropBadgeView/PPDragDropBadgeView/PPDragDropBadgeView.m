@@ -186,7 +186,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 
 - (void)update:(PRTweenPeriod*)period {
     CGFloat c = period.tweenedValue;
-    if (c > 10000000.0f) return; //Fix Bug:有时会返回一个非常大的数值
+    if (c > 10000000.0f||c < -10000000.0f) return; //Fix Bug:有时会返回一个非常大的数值
     
     if (_missed) {
         CGFloat x = (_toPoint.x-_elasticBeginPoint.x)*c/_distance;

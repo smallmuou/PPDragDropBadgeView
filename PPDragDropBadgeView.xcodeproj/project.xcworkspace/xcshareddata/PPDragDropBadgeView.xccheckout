@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0ED55EB1-E79F-45A8-8B29-DD35DC970EDB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PPDragDropBadgeView</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AE94FBEE27462942413766EDC7156A99A7C5A5AF</key>
+		<string>https://github.com/smallmuou/PPDragDropBadgeView.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PPDragDropBadgeView.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AE94FBEE27462942413766EDC7156A99A7C5A5AF</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/smallmuou/PPDragDropBadgeView.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AE94FBEE27462942413766EDC7156A99A7C5A5AF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AE94FBEE27462942413766EDC7156A99A7C5A5AF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PPDragDropBadgeView</string>
+		</dict>
+	</array>
+</dict>
+</plist>

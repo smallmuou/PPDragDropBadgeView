@@ -80,7 +80,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 @implementation PPDragDropBadgeView
 
 + (NSString* )version {
-    return @"1.0";
+    return @"1.1";
 }
 
 - (instancetype)initWithSuperView:(UIView* )superView
@@ -186,7 +186,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 
 - (void)update:(PRTweenPeriod*)period {
     CGFloat c = period.tweenedValue;
-    if (c > 10000000.0f||c < -10000000.0f) return; //Fix Bug:有时会返回一个非常大的数值
+    if (isnan(c) || c > 10000000.0f||c < -10000000.0f) return; //Fix Bug:有时会返回一个非常大的数值
     
     if (_missed) {
         CGFloat x = (_toPoint.x-_elasticBeginPoint.x)*c/_distance;
@@ -220,6 +220,9 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
                                   toPoint:(CGPoint)toPoint
                                fromRadius:(CGFloat)fromRadius
                                  toRadius:(CGFloat)toRadius scale:(CGFloat)scale{
+    
+    if (isnan(fromRadius) || isnan(toRadius)||isnan(fromRadius)||isnan(toRadius)) return nil;
+
     UIBezierPath* path = [[UIBezierPath alloc] init];
     CGFloat r = distanceBetweenPoints(fromPoint, toPoint);
     CGFloat offsetY = fabs(fromRadius-toRadius);

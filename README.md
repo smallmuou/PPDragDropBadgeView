@@ -52,6 +52,8 @@ badgeView.text = @"6";
 </pre>
 
 ### History
+* v1.1 (May 8, 2015)
+	* Fix Bug, it will crash when drag sometimes.
 * v1.0 (March 30, 2015)
 	* First release.
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E44A2D8C1B0D97ED00C0A7D6 /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44A2D8A1B0D97ED00C0A7D6 /* DemoTableViewController.m */; };
+		E44A2D8D1B0D97ED00C0A7D6 /* DemoTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E44A2D8B1B0D97ED00C0A7D6 /* DemoTableViewController.xib */; };
 		E49E17FD1AC8F5F3008C3009 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E17FC1AC8F5F3008C3009 /* main.m */; };
 		E49E18001AC8F5F3008C3009 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E17FF1AC8F5F3008C3009 /* AppDelegate.m */; };
 		E49E18031AC8F5F3008C3009 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E18021AC8F5F3008C3009 /* ViewController.m */; };
@@ -31,6 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E44A2D891B0D97ED00C0A7D6 /* DemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoTableViewController.h; path = ../DemoTableViewController.h; sourceTree = "<group>"; };
+		E44A2D8A1B0D97ED00C0A7D6 /* DemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DemoTableViewController.m; path = ../DemoTableViewController.m; sourceTree = "<group>"; };
+		E44A2D8B1B0D97ED00C0A7D6 /* DemoTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DemoTableViewController.xib; path = ../DemoTableViewController.xib; sourceTree = "<group>"; };
 		E49E17F71AC8F5F3008C3009 /* PPDragDropBadgeView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PPDragDropBadgeView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E49E17FB1AC8F5F3008C3009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E49E17FC1AC8F5F3008C3009 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -97,6 +102,9 @@
 				E49E17FF1AC8F5F3008C3009 /* AppDelegate.m */,
 				E49E18011AC8F5F3008C3009 /* ViewController.h */,
 				E49E18021AC8F5F3008C3009 /* ViewController.m */,
+				E44A2D891B0D97ED00C0A7D6 /* DemoTableViewController.h */,
+				E44A2D8A1B0D97ED00C0A7D6 /* DemoTableViewController.m */,
+				E44A2D8B1B0D97ED00C0A7D6 /* DemoTableViewController.xib */,
 				E49E18041AC8F5F3008C3009 /* Main.storyboard */,
 				E49E18071AC8F5F3008C3009 /* Images.xcassets */,
 				E49E18091AC8F5F3008C3009 /* LaunchScreen.xib */,
@@ -236,6 +244,7 @@
 				E49E18061AC8F5F3008C3009 /* Main.storyboard in Resources */,
 				E49E180B1AC8F5F3008C3009 /* LaunchScreen.xib in Resources */,
 				E49E18081AC8F5F3008C3009 /* Images.xcassets in Resources */,
+				E44A2D8D1B0D97ED00C0A7D6 /* DemoTableViewController.xib in Resources */,
 				E49E18331AC8F818008C3009 /* PPDragDropBadgeView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +267,7 @@
 				E49E18361AC8F818008C3009 /* PRTweenTimingFunctions.m in Sources */,
 				E49E18031AC8F5F3008C3009 /* ViewController.m in Sources */,
 				E49E18341AC8F818008C3009 /* PPDragDropBadgeView.m in Sources */,
+				E44A2D8C1B0D97ED00C0A7D6 /* DemoTableViewController.m in Sources */,
 				E49E18001AC8F5F3008C3009 /* AppDelegate.m in Sources */,
 				E49E17FD1AC8F5F3008C3009 /* main.m in Sources */,
 			);

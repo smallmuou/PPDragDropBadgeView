@@ -1,6 +1,6 @@
 # PPDragDropBadgeView
 PPDragDropBadgeView is a badge view which able to drag and drop. Just like QQ 5.0 badge view.
-![image](https://github.com/smallmuou/PPDragDropBadgeView/blob/master/PPDragDropBadgeView.png)
+![image](https://github.com/smallmuou/PPDragDropBadgeView/blob/master/PPDragDropBadgeView.gif)
 
 * Support iOS 5.0+ ARC
 

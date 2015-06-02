@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -121,15 +121,48 @@
                                     <constraint firstAttribute="height" constant="96" id="xjY-sp-fxA"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soC-h5-ohh">
+                                <rect key="frame" x="269" y="436" width="62" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Htr-59-XF3"/>
+                                    <constraint firstAttribute="width" constant="46" id="jc8-su-r0R"/>
+                                    <constraint firstAttribute="height" constant="30" id="nIL-3k-gJk"/>
+                                    <constraint firstAttribute="width" constant="62" id="pga-2O-YVr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Demo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="jc8-su-r0R"/>
+                                        <exclude reference="nIL-3k-gJk"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="onDemoButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0ba-VN-lE6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="SoB-TC-E8L" firstAttribute="top" secondItem="rKd-jb-bCm" secondAttribute="bottom" constant="33" id="22R-cC-GtM"/>
+                            <constraint firstItem="soC-h5-ohh" firstAttribute="top" secondItem="SoB-TC-E8L" secondAttribute="bottom" constant="24" id="7Zc-b9-hRL"/>
                             <constraint firstItem="rKd-jb-bCm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Wdm-WM-Y2c"/>
+                            <constraint firstAttribute="centerX" secondItem="soC-h5-ohh" secondAttribute="centerX" id="YKC-H2-zPo"/>
+                            <constraint firstAttribute="centerX" secondItem="soC-h5-ohh" secondAttribute="centerX" id="dfK-sa-tDw"/>
                             <constraint firstAttribute="centerX" secondItem="rKd-jb-bCm" secondAttribute="centerX" id="dyV-fw-TwG"/>
+                            <constraint firstItem="soC-h5-ohh" firstAttribute="top" secondItem="SoB-TC-E8L" secondAttribute="bottom" constant="23" id="hhS-zT-jcZ"/>
                             <constraint firstItem="SoB-TC-E8L" firstAttribute="top" secondItem="rKd-jb-bCm" secondAttribute="bottom" constant="33" id="rtL-lD-zGr"/>
                             <constraint firstAttribute="centerX" secondItem="SoB-TC-E8L" secondAttribute="centerX" id="tKy-RJ-5dQ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="dfK-sa-tDw"/>
+                                <exclude reference="hhS-zT-jcZ"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="borderColorSegmentedControl" destination="jQi-I0-uOb" id="Gsl-SC-3nF"/>

@@ -112,7 +112,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
         [self addSubview:_textLabel];
         
         _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onGestureAction:)];
-        [_rootView addGestureRecognizer:_panGestureRecognizer];
+        [self addGestureRecognizer:_panGestureRecognizer];
         
         //Init ImageView
         _bombImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 34, 34)];
@@ -138,7 +138,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 }
 
 - (void)dealloc {
-    [_rootView removeGestureRecognizer:_panGestureRecognizer];
+    [self removeGestureRecognizer:_panGestureRecognizer];
 }
 
 - (void)setRadius:(CGFloat)radius {
@@ -302,6 +302,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     CGPoint point = [gesture locationInView:self];
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan:
+            [self.superview.superview bringSubviewToFront:self.superview];
             [self touchesBegan:point];
             break;
         case UIGestureRecognizerStateEnded:

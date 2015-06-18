@@ -80,7 +80,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 @implementation PPDragDropBadgeView
 
 + (NSString* )version {
-    return @"1.1";
+    return @"1.2";
 }
 
 - (instancetype)initWithSuperView:(UIView* )superView

@@ -35,34 +35,18 @@
 
 /**
  * init badge view
- * 
- * @param superView The view with badge view add to.
- * @param location The location of badge view.
- * @param radius The radius of badge view.
+ *
+ * @param frame The frame rect
  * @param dragdropCompletion The completion block when drag drop done.
  */
-- (instancetype)initWithSuperView:(UIView* )superView
-                         location:(CGPoint)location
-                           radius:(CGFloat)radius
-               dragdropCompletion:(void(^)())dragdropCompletion;
-
-/** The location of badge view. */
-@property (nonatomic, assign) CGPoint location;
-
-/** The radius of badge view. */
-@property (nonatomic, assign) CGFloat radius;
+- (instancetype)initWithFrame:(CGRect)frame
+           dragdropCompletion:(void(^)())dragdropCompletion;
 
 /** The completion block when drag drop done. */
 @property (nonatomic, copy) void(^dragdropCompletion)();
 
 /** The tint color of badge view. Default is red */
 @property (nonatomic, strong) UIColor* tintColor;
-
-/** The border color of badge view. Default is clear */
-@property (nonatomic, strong) UIColor* borderColor;
-
-/** The border width of badge view. Default is 1.0f */
-@property (nonatomic, assign) CGFloat borderWidth;
 
 /** The text of badge view. */
 @property (nonatomic, strong) NSString* text;

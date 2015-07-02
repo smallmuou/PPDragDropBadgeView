@@ -17,7 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    self.title = @"PPDragDropBadgeView";
+    
+    PPDragDropBadgeView* badge = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    badge.text = @"8";
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:badge];
+    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"reuseIdentifier"];
 }
 
@@ -29,7 +36,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 20;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -37,11 +44,14 @@
     
     cell.textLabel.text = @"BadgeView";
     
-    PPDragDropBadgeView* badge = [[PPDragDropBadgeView alloc] initWithSuperView:cell location:CGPointMake(cell.bounds.size.width - 50, 35) radius:10 dragdropCompletion:^{
-        NSLog(@"Done");
+    
+    PPDragDropBadgeView* badge = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(0, 0, 20, 20) dragdropCompletion:^{
+        NSLog(@"Drag Done");
     }];
+    
     badge.text = [NSString stringWithFormat:@"%lu", indexPath.row];
-        
+    cell.accessoryView = badge;
+    
     return cell;
 }
 

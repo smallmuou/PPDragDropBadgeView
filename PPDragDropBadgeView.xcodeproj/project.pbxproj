@@ -11,8 +11,6 @@
 		E44A2D8D1B0D97ED00C0A7D6 /* DemoTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E44A2D8B1B0D97ED00C0A7D6 /* DemoTableViewController.xib */; };
 		E49E17FD1AC8F5F3008C3009 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E17FC1AC8F5F3008C3009 /* main.m */; };
 		E49E18001AC8F5F3008C3009 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E17FF1AC8F5F3008C3009 /* AppDelegate.m */; };
-		E49E18031AC8F5F3008C3009 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E18021AC8F5F3008C3009 /* ViewController.m */; };
-		E49E18061AC8F5F3008C3009 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E49E18041AC8F5F3008C3009 /* Main.storyboard */; };
 		E49E18081AC8F5F3008C3009 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E49E18071AC8F5F3008C3009 /* Images.xcassets */; };
 		E49E180B1AC8F5F3008C3009 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49E18091AC8F5F3008C3009 /* LaunchScreen.xib */; };
 		E49E18171AC8F5F3008C3009 /* PPDragDropBadgeViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E18161AC8F5F3008C3009 /* PPDragDropBadgeViewTests.m */; };
@@ -41,9 +39,6 @@
 		E49E17FC1AC8F5F3008C3009 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E49E17FE1AC8F5F3008C3009 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E49E17FF1AC8F5F3008C3009 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E49E18011AC8F5F3008C3009 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E49E18021AC8F5F3008C3009 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		E49E18051AC8F5F3008C3009 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E49E18071AC8F5F3008C3009 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E49E180A1AC8F5F3008C3009 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E49E18101AC8F5F3008C3009 /* PPDragDropBadgeViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PPDragDropBadgeViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,12 +95,9 @@
 				E49E182A1AC8F818008C3009 /* PPDragDropBadgeView */,
 				E49E17FE1AC8F5F3008C3009 /* AppDelegate.h */,
 				E49E17FF1AC8F5F3008C3009 /* AppDelegate.m */,
-				E49E18011AC8F5F3008C3009 /* ViewController.h */,
-				E49E18021AC8F5F3008C3009 /* ViewController.m */,
 				E44A2D891B0D97ED00C0A7D6 /* DemoTableViewController.h */,
 				E44A2D8A1B0D97ED00C0A7D6 /* DemoTableViewController.m */,
 				E44A2D8B1B0D97ED00C0A7D6 /* DemoTableViewController.xib */,
-				E49E18041AC8F5F3008C3009 /* Main.storyboard */,
 				E49E18071AC8F5F3008C3009 /* Images.xcassets */,
 				E49E18091AC8F5F3008C3009 /* LaunchScreen.xib */,
 				E49E17FA1AC8F5F3008C3009 /* Supporting Files */,
@@ -241,7 +233,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E49E18061AC8F5F3008C3009 /* Main.storyboard in Resources */,
 				E49E180B1AC8F5F3008C3009 /* LaunchScreen.xib in Resources */,
 				E49E18081AC8F5F3008C3009 /* Images.xcassets in Resources */,
 				E44A2D8D1B0D97ED00C0A7D6 /* DemoTableViewController.xib in Resources */,
@@ -265,7 +256,6 @@
 			files = (
 				E49E18351AC8F818008C3009 /* PRTween.m in Sources */,
 				E49E18361AC8F818008C3009 /* PRTweenTimingFunctions.m in Sources */,
-				E49E18031AC8F5F3008C3009 /* ViewController.m in Sources */,
 				E49E18341AC8F818008C3009 /* PPDragDropBadgeView.m in Sources */,
 				E44A2D8C1B0D97ED00C0A7D6 /* DemoTableViewController.m in Sources */,
 				E49E18001AC8F5F3008C3009 /* AppDelegate.m in Sources */,
@@ -292,14 +282,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E49E18041AC8F5F3008C3009 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E49E18051AC8F5F3008C3009 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E49E18091AC8F5F3008C3009 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DemoTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    DemoTableViewController* dvc = [[DemoTableViewController alloc] initWithNibName:@"DemoTableViewController" bundle:nil];
+    
+    UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:dvc];
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

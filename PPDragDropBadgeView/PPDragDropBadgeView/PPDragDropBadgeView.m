@@ -51,6 +51,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     CGFloat                 _viscosity;
     
     CGPoint                 _originPoint;
+    CGFloat                 _radius;
     
     CGPoint                 _fromPoint;
     CGPoint                 _toPoint;
@@ -68,51 +69,48 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     UILabel*                _textLabel;
     UIImageView*            _bombImageView;
     
-    UIPanGestureRecognizer* _panGestureRecognizer;
-    UIView*                 _rootView;
     NSMutableArray*         _followPoints;
     NSTimer*                _followTimer;
+    
+    CAShapeLayer*           _shapeLayer;
+    
+ 
+    UIPanGestureRecognizer* _panGestureRecognizer;
+
 }
 
 @end
 
-
 @implementation PPDragDropBadgeView
 
 + (NSString* )version {
-    return @"1.2";
+    return @"2.0";
 }
 
-- (instancetype)initWithSuperView:(UIView* )superView
-                         location:(CGPoint)location
-                           radius:(CGFloat)radius
-               dragdropCompletion:(void(^)())dragdropCompletion {
-    
-    UIView* rootView = [[[[[UIApplication sharedApplication] delegate] window] rootViewController] view];
-    self = [super initWithFrame:[superView convertRect:rootView.bounds fromView:rootView]];
+- (instancetype)initWithFrame:(CGRect)frame {
+    return [self initWithFrame:frame dragdropCompletion:nil];
+}
+
+
+- (instancetype)initWithFrame:(CGRect)frame
+           dragdropCompletion:(void(^)())dragdropCompletion {
+    self = [super initWithFrame:frame];
     if (self) {
-        //Init data
-        _rootView = rootView;
-        _borderColor = kDefaultBorderColor;
-        _borderWidth = kDefaultBorderWidth;
-        _tintColor = kDefaultTintColor;
-        _location = location;
-        _originPoint = [superView convertPoint:location toView:_rootView];
-        _radius = radius;
-        _followPoints = [NSMutableArray array];
-        self.dragdropCompletion = dragdropCompletion;
-        
-        //Init self
         self.backgroundColor = [UIColor clearColor];
+        self.dragdropCompletion = dragdropCompletion;
+
+        _tintColor = kDefaultTintColor;
+
+        _shapeLayer = [CAShapeLayer new];
+        [self.layer addSublayer:_shapeLayer];
+        _shapeLayer.frame = self.bounds;
+        _shapeLayer.fillColor = _tintColor.CGColor;
         
-        //Init textLabel
-        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 2*radius, 2*radius)];
-        _textLabel.textColor = [UIColor whiteColor];
-        _textLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:_textLabel];
+        _followPoints = [NSMutableArray array];
+        _radius = self.frame.size.height/2;
+        _originPoint = CGPointMake(_radius, _radius);
         
-        _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onGestureAction:)];
-        [self addGestureRecognizer:_panGestureRecognizer];
+
         
         //Init ImageView
         _bombImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 34, 34)];
@@ -125,49 +123,31 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
         _bombImageView.animationDuration = kBombDuration;
         [self addSubview:_bombImageView];
         
-        [superView addSubview:self];
+        
+        //Init Label
+        _textLabel = [[UILabel alloc] initWithFrame:self.bounds];
+        _textLabel.textColor = [UIColor whiteColor];
+        _textLabel.textAlignment = NSTextAlignmentCenter;
+        _textLabel.text = @"";
+        [self addSubview:_textLabel];
+        
+        _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onGestureAction:)];
+        [self addGestureRecognizer:_panGestureRecognizer];
     }
     return self;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.frame = [self.superview convertRect:_rootView.bounds fromView:_rootView];
-    _originPoint = [self.superview convertPoint:_location toView:_rootView];
     [self reset];
 }
 
 - (void)dealloc {
-    [self removeGestureRecognizer:_panGestureRecognizer];
-}
-
-- (void)setRadius:(CGFloat)radius {
-    _radius = radius;
-    _maxDistance = kMaxDistanceScaleCoefficient*self.radius;
-    _textLabel.frame = CGRectMake(0, 0, 2*radius, 2*radius);
-    [self updateRadius];
-}
-
-- (void)setLocation:(CGPoint)location {
-    _location = location;
-    _originPoint = [self.superview convertPoint:location toView:_rootView];
-
-    [self reset];
-}
-
-- (void)setBorderColor:(UIColor *)borderColor {
-    _borderColor = borderColor?borderColor:kDefaultBorderColor;
-    [self setNeedsDisplay];
-}
-
-- (void)setBorderWidth:(CGFloat)borderWidth {
-    _borderWidth = borderWidth;
-    [self setNeedsDisplay];
 }
 
 - (void)setTintColor:(UIColor *)tintColor {
     _tintColor = tintColor?tintColor:kDefaultTintColor;
-    [self setNeedsDisplay];
+    _shapeLayer.fillColor = _tintColor.CGColor;
 }
 
 - (void)setText:(NSString *)text {
@@ -179,7 +159,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 - (void)reset {
     _fromPoint = _originPoint;
     _toPoint = _fromPoint;
-    _maxDistance = kMaxDistanceScaleCoefficient*self.radius;
+    _maxDistance = kMaxDistanceScaleCoefficient*_radius;
 
     [self updateRadius];
 }
@@ -206,8 +186,9 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 
 - (void)updateRadius {
     CGFloat r = distanceBetweenPoints(_fromPoint, _toPoint);
-    _fromRadius = self.radius-kFromRadiusScaleCoefficient*r;
-    _toRadius = self.radius-kToRadiusScaleCoefficient*r;
+    
+    _fromRadius = _radius-kFromRadiusScaleCoefficient*r;
+    _toRadius = _radius-kToRadiusScaleCoefficient*r;
     _viscosity = 1.0-r/_maxDistance;
     _textLabel.font = [UIFont systemFontOfSize:(2*_toRadius)/(1.2*[_textLabel.text length])];
     _textLabel.center = _toPoint;
@@ -288,13 +269,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 
 - (void)drawRect:(CGRect)rect {
     UIBezierPath* path = [self bezierPathWithFromPoint:_fromPoint toPoint:_toPoint fromRadius:_fromRadius toRadius:_toRadius scale:_viscosity];
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, self.tintColor.CGColor);
-    CGContextSetLineWidth(context, self.borderWidth);
-    CGContextSetStrokeColorWithColor(context, self.borderColor.CGColor);
-    CGContextAddPath(context, path.CGPath);
-    CGContextDrawPath(context, kCGPathFillStroke);
+    _shapeLayer.path = path.CGPath;
 }
 
 #pragma mark - Touch

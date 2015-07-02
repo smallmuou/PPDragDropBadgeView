@@ -132,10 +132,14 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
         [self addSubview:_textLabel];
         
         _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onGestureAction:)];
+        [_panGestureRecognizer setDelaysTouchesBegan:YES];
+        [_panGestureRecognizer setDelaysTouchesEnded:YES];
         [self addGestureRecognizer:_panGestureRecognizer];
     }
     return self;
 }
+
+
 
 - (void)layoutSubviews {
     [super layoutSubviews];
@@ -143,6 +147,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 }
 
 - (void)dealloc {
+    [self removeGestureRecognizer:_panGestureRecognizer];
 }
 
 - (void)setTintColor:(UIColor *)tintColor {

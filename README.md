@@ -18,40 +18,28 @@ You can also refer to the example project provided by me.
 
 	<pre>
 PPDragDropBadgeView* badgeView \
-= [[PPDragDropBadgeView alloc] initWithSuperView:self.testView
-                                        location:CGPointMake(0,0)
-                                          radius:10.0f dragdropCompletion:^{
+= [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(0, 0, 20, 20) dragdropCompletion:^{
                                                          NSLog(@"Drag drop done.");
                                            }];
 badgeView.text = @"6";
 </pre>
 
 * Q: Does it can be customized?
-* A: Of course, you can set "location", "radius", "tintColor", "borderWidth", "borderColor". You can see the propertys provided by me.
+* A: Of course, You can see the propertys provided by me.
 	<pre>
-	/** The location of badge view. */
-	@property (nonatomic, assign) CGPoint location;
-	
-	/** The radius of badge view. */
-	@property (nonatomic, assign) CGFloat radius;
-	
 	/** The completion block when drag drop done. */
 	@property (nonatomic, copy) void(^dragdropCompletion)();
 	
 	/** The tint color of badge view. Default is red */
 	@property (nonatomic, strong) UIColor* tintColor;
 	
-	/** The border color of badge view. Default is clear */
-	@property (nonatomic, strong) UIColor* borderColor;
-	
-	/** The border width of badge view. Default is 1.0f */
-	@property (nonatomic, assign) CGFloat borderWidth;
-	
 	/** The text of badge view. */
 	@property (nonatomic, strong) NSString* text;
 </pre>
 
 ### History
+* v2.0 (July 2, 2015)
+	* Fix bug, it can scroll tableview when badage in cell.
 * v1.2 (June 18, 2015)
 	* Fix bug, it does't drag when in innner viewcontroller
 * v1.1 (May 8, 2015)

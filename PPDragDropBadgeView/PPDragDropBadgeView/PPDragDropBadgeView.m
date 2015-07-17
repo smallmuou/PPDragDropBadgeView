@@ -40,6 +40,7 @@
 #define kFollowTimeInterval             0.016f
 #define kBombDuration                   0.5f
 #define kValidRadius                    20.0f
+#define kDefaultFontSize                16.0f
 
 CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     CGFloat deltaX = p2.x - p1.x;
@@ -87,59 +88,65 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     return @"2.0";
 }
 
+- (void)awakeFromNib {
+    [self setup];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     return [self initWithFrame:frame dragdropCompletion:nil];
 }
-
 
 - (instancetype)initWithFrame:(CGRect)frame
            dragdropCompletion:(void(^)())dragdropCompletion {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
         self.dragdropCompletion = dragdropCompletion;
-
-        _tintColor = kDefaultTintColor;
-
-        _shapeLayer = [CAShapeLayer new];
-        [self.layer addSublayer:_shapeLayer];
-        _shapeLayer.frame = self.bounds;
-        _shapeLayer.fillColor = _tintColor.CGColor;
-        
-        _followPoints = [NSMutableArray array];
-        _radius = self.frame.size.height/2;
-        _originPoint = CGPointMake(_radius, _radius);
-        
-
-        
-        //Init ImageView
-        _bombImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 34, 34)];
-        _bombImageView.animationImages = @[[UIImage imageNamed:@"PPDragDropBadgeView.bundle/bomb0"],
-                                           [UIImage imageNamed:@"PPDragDropBadgeView.bundle/bomb1"],
-                                           [UIImage imageNamed:@"PPDragDropBadgeView.bundle/bomb2"],
-                                           [UIImage imageNamed:@"PPDragDropBadgeView.bundle/bomb3"],
-                                           [UIImage imageNamed:@"PPDragDropBadgeView.bundle/bomb4"]];
-        _bombImageView.animationRepeatCount = 1;
-        _bombImageView.animationDuration = kBombDuration;
-        [self addSubview:_bombImageView];
-        
-        
-        //Init Label
-        _textLabel = [[UILabel alloc] initWithFrame:self.bounds];
-        _textLabel.textColor = [UIColor whiteColor];
-        _textLabel.textAlignment = NSTextAlignmentCenter;
-        _textLabel.text = @"";
-        [self addSubview:_textLabel];
-        
-        _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onGestureAction:)];
-        [_panGestureRecognizer setDelaysTouchesBegan:YES];
-        [_panGestureRecognizer setDelaysTouchesEnded:YES];
-        [self addGestureRecognizer:_panGestureRecognizer];
+        [self setup];
     }
     return self;
 }
 
-
+- (void)setup {
+    self.backgroundColor = [UIColor clearColor];
+    
+    _tintColor = kDefaultTintColor;
+    
+    _shapeLayer = [CAShapeLayer new];
+    [self.layer addSublayer:_shapeLayer];
+    _shapeLayer.frame = self.bounds;
+    _shapeLayer.fillColor = _tintColor.CGColor;
+    
+    _followPoints = [NSMutableArray array];
+    _radius = self.frame.size.height/2;
+    _originPoint = CGPointMake(_radius, _radius);
+    
+    
+    
+    //Init ImageView
+    _bombImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 34, 34)];
+    _bombImageView.animationImages = @[[UIImage imageNamed:@"PPDragDropBadgeView.bundle/bomb0"],
+                                       [UIImage imageNamed:@"PPDragDropBadgeView.bundle/bomb1"],
+                                       [UIImage imageNamed:@"PPDragDropBadgeView.bundle/bomb2"],
+                                       [UIImage imageNamed:@"PPDragDropBadgeView.bundle/bomb3"],
+                                       [UIImage imageNamed:@"PPDragDropBadgeView.bundle/bomb4"]];
+    _bombImageView.animationRepeatCount = 1;
+    _bombImageView.animationDuration = kBombDuration;
+    [self addSubview:_bombImageView];
+    
+    
+    //Init Label
+    _textLabel = [[UILabel alloc] initWithFrame:self.bounds];
+    _textLabel.textColor = [UIColor whiteColor];
+    _textLabel.font = [UIFont systemFontOfSize:kDefaultFontSize];
+    _textLabel.textAlignment = NSTextAlignmentCenter;
+    _textLabel.text = @"";
+    [self addSubview:_textLabel];
+    
+    _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onGestureAction:)];
+    [_panGestureRecognizer setDelaysTouchesBegan:YES];
+    [_panGestureRecognizer setDelaysTouchesEnded:YES];
+    [self addGestureRecognizer:_panGestureRecognizer];
+}
 
 - (void)layoutSubviews {
     [super layoutSubviews];
@@ -155,10 +162,18 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     _shapeLayer.fillColor = _tintColor.CGColor;
 }
 
+- (void)setFont:(UIFont *)font {
+    [_textLabel setFont:font];
+}
+
 - (void)setText:(NSString *)text {
     _textLabel.text = text;
     _textLabel.hidden = NO;
     [self reset];
+}
+
+- (void)setTextColor:(UIColor *)textColor {
+    _textLabel.textColor = textColor;
 }
 
 - (void)reset {
@@ -195,7 +210,10 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     _fromRadius = _radius-kFromRadiusScaleCoefficient*r;
     _toRadius = _radius-kToRadiusScaleCoefficient*r;
     _viscosity = 1.0-r/_maxDistance;
-    _textLabel.font = [UIFont systemFontOfSize:(2*_toRadius)/(1.2*[_textLabel.text length])];
+    
+    if (_fontSizeAutoFit) {
+        _textLabel.font = [_textLabel.font fontWithSize:(2*_toRadius)/(1.2*[_textLabel.text length])];
+    }
     _textLabel.center = _toPoint;
 
     [self setNeedsDisplay];

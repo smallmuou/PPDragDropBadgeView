@@ -48,7 +48,16 @@
 /** The tint color of badge view. Default is red */
 @property (nonatomic, strong) UIColor* tintColor;
 
+/** The font of text, Default System font 16.0f */
+@property (nonatomic, strong) UIFont* font;
+
+/** Auto fit font size, Default is NO */
+@property (nonatomic, assign) BOOL fontSizeAutoFit;
+
 /** The text of badge view. */
 @property (nonatomic, strong) NSString* text;
+
+/** The text color of badge view. */
+@property (nonatomic, strong) UIColor* textColor;
 
 @end

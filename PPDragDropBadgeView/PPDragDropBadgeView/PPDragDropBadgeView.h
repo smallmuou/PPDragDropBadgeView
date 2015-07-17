@@ -55,7 +55,7 @@
 @property (nonatomic, strong) UIFont* font;
 
 /** The font size of text, Default System font 16.0f */
-@property (nonatomic, strong) CGFloat fontSize;
+@property (nonatomic, assign) CGFloat fontSize;
 
 /** Auto fit font size, Default is NO */
 @property (nonatomic, assign) BOOL fontSizeAutoFit;

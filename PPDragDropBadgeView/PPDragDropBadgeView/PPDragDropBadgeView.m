@@ -168,6 +168,10 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     [_textLabel setFont:font];
 }
 
+- (void)setFontSize:(CGFloat)fontSize {
+    [_textLabel setFont:[_textLabel.font fontWithSize:fontSize]];
+}
+
 - (void)setText:(NSString *)text {
     _textLabel.text = text;
     _textLabel.hidden = NO;

@@ -51,6 +51,9 @@
 /** The font of text, Default System font 16.0f */
 @property (nonatomic, strong) UIFont* font;
 
+/** Hide the badge view when text is zero. Default is YES */
+@property (nonatomic, assign) BOOL hiddenWhenZero;
+
 /** Auto fit font size, Default is NO */
 @property (nonatomic, assign) BOOL fontSizeAutoFit;
 

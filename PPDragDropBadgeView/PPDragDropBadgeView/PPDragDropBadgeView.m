@@ -110,6 +110,8 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     self.backgroundColor = [UIColor clearColor];
     
     _tintColor = kDefaultTintColor;
+    _hiddenWhenZero = YES;
+    _fontSizeAutoFit = NO;
     
     _shapeLayer = [CAShapeLayer new];
     [self.layer addSublayer:_shapeLayer];
@@ -169,6 +171,13 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 - (void)setText:(NSString *)text {
     _textLabel.text = text;
     _textLabel.hidden = NO;
+    
+    self.hidden = NO;
+    if (_hiddenWhenZero
+        && ([text isEqualToString:@"0"] || [text isEqualToString:@""])) {
+        self.hidden = YES;
+    }
+    
     [self reset];
 }
 

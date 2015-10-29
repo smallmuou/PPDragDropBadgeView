@@ -53,7 +53,7 @@ self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustom
 ### History
 * v2.1 (October 29, 2015)
 	* Fix bug, it can on the top view some case.
-	* Fix bug, when drag will crash sometime.
+	* Fix bug, it will crash when drag sometimes.
 * v2.0 (July 2, 2015)
 	* Fix bug, it can scroll tableview when badage in cell.
 * v1.2 (June 18, 2015)

@@ -56,13 +56,13 @@
         cell.badgeView.text = [NSString stringWithFormat:@"%lu", indexPath.row+1];
     } else {
         //accessoryView
-        PPDragDropBadgeView* badge = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(0, 0, 25, 25) dragdropCompletion:^{
+        PPDragDropBadgeView* badge = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(10, 10, 25, 25) dragdropCompletion:^{
             NSLog(@"Drag Drop Done.");
         }];
         badge.text = [NSString stringWithFormat:@"%lu", indexPath.row+1];
         
         //Please add to container first
-        UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+        UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
         [container addSubview:badge];
         cell.accessoryView = container;
     }

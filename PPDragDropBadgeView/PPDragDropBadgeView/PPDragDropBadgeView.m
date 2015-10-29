@@ -42,6 +42,8 @@
 #define kValidRadius                    20.0f
 #define kDefaultFontSize                16.0f
 
+#define kPaddingSize                    10.0f
+
 CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     CGFloat deltaX = p2.x - p1.x;
     CGFloat deltaY = p2.y - p1.y;
@@ -49,10 +51,12 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 };
 
 @interface PPDragDropBadgeView () {
-    CGFloat                 _viscosity;
-    
-    CGPoint                 _originPoint;
-    CGFloat                 _radius;
+    UIControl*              _overlayView;       //拖动时self依附的view
+    UIView*                 _originSuperView;   //原self容器
+    CGFloat                 _viscosity;         //粘度
+    CGSize                  _size;              //圆大小
+    CGPoint                 _originPoint;       //源点
+    CGFloat                 _radius;            //圆半径
     
     CGPoint                 _fromPoint;
     CGPoint                 _toPoint;
@@ -61,7 +65,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     
     CGPoint                 _elasticBeginPoint;
     
-    BOOL                    _missed;    //Missed focus
+    BOOL                    _missed;
     BOOL                    _beEnableDragDrop;
     CGFloat                 _maxDistance;
     CGFloat                 _distance;
@@ -70,25 +74,23 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     UILabel*                _textLabel;
     UIImageView*            _bombImageView;
     
-    NSMutableArray*         _followPoints;
-    NSTimer*                _followTimer;
-    
     CAShapeLayer*           _shapeLayer;
     
- 
     UIPanGestureRecognizer* _panGestureRecognizer;
-
 }
+
+@property (nonatomic, strong) UIControl* overlayView;
 
 @end
 
 @implementation PPDragDropBadgeView
 
 + (NSString* )version {
-    return @"2.0";
+    return @"2.1";
 }
 
 - (void)awakeFromNib {
+    NSLog(@"awakeFromNib...");
     [self setup];
 }
 
@@ -107,7 +109,16 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 }
 
 - (void)setup {
-    self.backgroundColor = [UIColor clearColor];
+    //为了便于拖拽，扩大空间区域
+    _size = self.frame.size;
+    CGRect wapperFrame = self.frame;
+    wapperFrame.origin.x -= kPaddingSize;
+    wapperFrame.origin.y -= kPaddingSize;
+    wapperFrame.size.width += kPaddingSize*2;
+    wapperFrame.size.height += kPaddingSize*2;
+    self.frame = wapperFrame;
+
+    self.backgroundColor = [UIColor blueColor];
     
     _tintColor = kDefaultTintColor;
     _hiddenWhenZero = YES;
@@ -115,16 +126,13 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     
     _shapeLayer = [CAShapeLayer new];
     [self.layer addSublayer:_shapeLayer];
-    _shapeLayer.frame = self.bounds;
+    _shapeLayer.frame = CGRectMake(0, 0, _size.width, _size.height);
     _shapeLayer.fillColor = _tintColor.CGColor;
     
-    _followPoints = [NSMutableArray array];
-    _radius = self.frame.size.height/2;
-    _originPoint = CGPointMake(_radius, _radius);
+    _radius = _size.width/2;
+    _originPoint = CGPointMake(kPaddingSize+_radius, kPaddingSize+_radius);
     
-    
-    
-    //Init ImageView
+    //爆炸效果
     _bombImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 34, 34)];
     _bombImageView.animationImages = @[[UIImage imageNamed:@"PPDragDropBadgeView.bundle/bomb0"],
                                        [UIImage imageNamed:@"PPDragDropBadgeView.bundle/bomb1"],
@@ -135,15 +143,15 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     _bombImageView.animationDuration = kBombDuration;
     [self addSubview:_bombImageView];
     
-    
-    //Init Label
-    _textLabel = [[UILabel alloc] initWithFrame:self.bounds];
+    //文字
+    _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPaddingSize, kPaddingSize, _size.width, _size.width)];
     _textLabel.textColor = [UIColor whiteColor];
     _textLabel.font = [UIFont systemFontOfSize:kDefaultFontSize];
     _textLabel.textAlignment = NSTextAlignmentCenter;
     _textLabel.text = @"";
     [self addSubview:_textLabel];
     
+    //拖动手势
     _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onGestureAction:)];
     [_panGestureRecognizer setDelaysTouchesBegan:YES];
     [_panGestureRecognizer setDelaysTouchesEnded:YES];
@@ -199,20 +207,20 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 
 - (void)update:(PRTweenPeriod*)period {
     CGFloat c = period.tweenedValue;
-    if (isnan(c) || c > 10000000.0f||c < -10000000.0f) return; //Fix Bug:有时会返回一个非常大的数值
+    if (isnan(c) || c > 10000000.0f || c < -10000000.0f) return;
     
     if (_missed) {
-        CGFloat x = (_toPoint.x-_elasticBeginPoint.x)*c/_distance;
-        CGFloat y = (_toPoint.y-_elasticBeginPoint.y)*c/_distance;
+        CGFloat x = (_distance != 0)?((_toPoint.x-_elasticBeginPoint.x)*c/_distance):0;
+        CGFloat y = (_distance != 0)?((_toPoint.y-_elasticBeginPoint.y)*c/_distance):0;
         
         _fromPoint = CGPointMake(_elasticBeginPoint.x+x, _elasticBeginPoint.y+y);
     } else {
-        CGFloat x = (_fromPoint.x - _elasticBeginPoint.x)*c/_distance;
-        CGFloat y = (_fromPoint.y - _elasticBeginPoint.y)*c/_distance;
+        CGFloat x = (_distance != 0)?((_fromPoint.x - _elasticBeginPoint.x)*c/_distance):0;
+        CGFloat y = (_distance != 0)?((_fromPoint.y - _elasticBeginPoint.y)*c/_distance):0;
         
         _toPoint = CGPointMake(_elasticBeginPoint.x+x, _elasticBeginPoint.y+y);
-        
     }
+    
     [self updateRadius];
 }
 
@@ -222,10 +230,10 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     
     _fromRadius = _radius-kFromRadiusScaleCoefficient*r;
     _toRadius = _radius-kToRadiusScaleCoefficient*r;
-    _viscosity = 1.0-r/_maxDistance;
+    _viscosity = (_maxDistance != 0)?(1.0-r/_maxDistance):1.0f;
     
     if (_fontSizeAutoFit) {
-        _textLabel.font = [_textLabel.font fontWithSize:(2*_toRadius)/(1.2*[_textLabel.text length])];
+        _textLabel.font = [_textLabel.font fontWithSize:(_textLabel.text.length)?((2*_toRadius)/(1.2*_textLabel.text.length)):kDefaultFontSize];
     }
     _textLabel.center = _toPoint;
 
@@ -302,7 +310,6 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     return path;
 }
 
-
 - (void)drawRect:(CGRect)rect {
     UIBezierPath* path = [self bezierPathWithFromPoint:_fromPoint toPoint:_toPoint fromRadius:_fromRadius toRadius:_toRadius scale:_viscosity];
     _shapeLayer.path = path.CGPath;
@@ -312,10 +319,10 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 - (void)onGestureAction:(UIPanGestureRecognizer* )gesture {
     CGPoint point = [gesture locationInView:self];
     switch (gesture.state) {
-        case UIGestureRecognizerStateBegan:
-            [self.superview.superview bringSubviewToFront:self.superview];
+        case UIGestureRecognizerStateBegan: {
             [self touchesBegan:point];
             break;
+        }
         case UIGestureRecognizerStateEnded:
             [self touchesEnded:point];
             break;
@@ -329,23 +336,78 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 
 - (void)touchesBegan:(CGPoint)point {
     _missed = NO;
-    _beEnableDragDrop = CGRectContainsPoint(CGRectMake(_fromPoint.x-kValidRadius, _fromPoint.y-kValidRadius, 2*kValidRadius, 2*kValidRadius), point);
+    _beEnableDragDrop = YES;
+    [self becomeUpper];
+}
+
+- (UIControl *)overlayView {
+    if(!_overlayView) {
+        _overlayView = [[UIControl alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _overlayView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _overlayView.backgroundColor = [UIColor clearColor];
+    }
+    return _overlayView;
+}
+
+- (void)becomeUpper {
+    if(!self.overlayView.superview){
+        NSEnumerator *frontToBackWindows = [UIApplication.sharedApplication.windows reverseObjectEnumerator];
+        for (UIWindow *window in frontToBackWindows){
+            BOOL windowOnMainScreen = window.screen == UIScreen.mainScreen;
+            BOOL windowIsVisible = !window.hidden && window.alpha > 0;
+            BOOL windowLevelNormal = window.windowLevel == UIWindowLevelNormal;
+            
+            if (windowOnMainScreen && windowIsVisible && windowLevelNormal) {
+                [window addSubview:self.overlayView];
+                break;
+            }
+        }
+    } else {
+        [self.overlayView.superview bringSubviewToFront:self.overlayView];
+    }
+
+    _originSuperView = self.superview;
+    self.center = [_originSuperView convertPoint:self.center toView:self.overlayView];
+    
+    if ([_originSuperView isKindOfClass:[UITableViewCell class]]
+        && self == ((UITableViewCell* )_originSuperView).accessoryView) {
+        ((UITableViewCell* )_originSuperView).accessoryView = nil;
+    }
+    
+    [self.overlayView addSubview:self];
+}
+
+- (void)resignUpper {
+    [_overlayView removeFromSuperview];
+    self.center = [_overlayView convertPoint:self.center toView:_originSuperView];
+    
+    if ([_originSuperView isKindOfClass:[UITableViewCell class]]
+        && self == ((UITableViewCell* )_originSuperView).accessoryView) {
+        ((UITableViewCell* )_originSuperView).accessoryView = self;
+    } else {
+        [_originSuperView addSubview:self];
+    }
+    
+    _overlayView = nil;
 }
 
 - (void)touchesEnded:(CGPoint)point {
     if (!_beEnableDragDrop) return;
+    
     if (!_missed) {
         _elasticBeginPoint = _toPoint;
         _distance = distanceBetweenPoints(_fromPoint, _toPoint);
         
         [[PRTween sharedInstance] removeTweenOperation:_activeTweenOperation];
-        
         PRTweenPeriod *period = [PRTweenPeriod periodWithStartValue:0 endValue:_distance duration:kElasticDuration];
         _activeTweenOperation = [[PRTween sharedInstance] addTweenPeriod:period target:self selector:@selector(update:) timingFunction:&PRTweenTimingFunctionElasticOut];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kElasticDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self resignUpper];
+        });
     } else {
-        [self followEnded];
-
         if (CGRectContainsPoint(CGRectMake(_originPoint.x-kValidRadius, _originPoint.y-kValidRadius, 2*kValidRadius, 2*kValidRadius), point)) {
+            [self resignUpper];
             [self reset];
         } else {
             _bombImageView.center = _toPoint;
@@ -356,6 +418,10 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
             _activeTweenOperation.updateSelector = nil;
             [[PRTween sharedInstance] removeTweenOperation:_activeTweenOperation];
             
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kBombDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self resignUpper];
+            });
+            
             if (self.dragdropCompletion) {
                 self.dragdropCompletion();
             }
@@ -365,55 +431,15 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     }
 }
 
-#pragma mark - follow
-- (void)insertFollowPoint:(CGPoint )point {
-    @synchronized(_followPoints) {
-        [_followPoints addObject:[NSValue valueWithCGPoint:point]];
-    }
-}
-
-- (CGPoint)removeFollowPoint {
-    CGPoint point = CGPointZero;
-    @synchronized(_followPoints) {
-        if ([_followPoints count]) {
-            point = [[_followPoints firstObject] CGPointValue];
-            [_followPoints removeObjectAtIndex:0];
-        }
-    }
-    
-    return point;
-}
-
-- (void)removeAllFollowPoints {
-    @synchronized(_followPoints) {
-        [_followPoints removeAllObjects];
-    }
-}
-
-- (void)followTimeout:(NSTimer* )timer {
-    CGPoint point = [self removeFollowPoint];
-    if (!CGPointEqualToPoint(point, CGPointZero)) {
-        _fromPoint = _toPoint = point;
-        [self updateRadius];
-    }
-}
-
-- (void)followEnded {
-    [_followTimer invalidate];
-    _followTimer = nil;
-    [self removeAllFollowPoints];
-}
-
 - (void)touchesMoved:(CGPoint)point {
     if (!_beEnableDragDrop) return;
     
     CGFloat r = distanceBetweenPoints(_fromPoint, point);
     if (_missed) {
         _activeTweenOperation.updateSelector = nil;
-        [self insertFollowPoint:point];
-        
-        if (!_followTimer) {
-            _followTimer = [NSTimer scheduledTimerWithTimeInterval:kFollowTimeInterval target:self selector:@selector(followTimeout:) userInfo:nil repeats:YES];
+        if (!CGPointEqualToPoint(point, CGPointZero)) {
+            _fromPoint = _toPoint = point;
+            [self updateRadius];
         }
     } else {
         _toPoint = point;

@@ -475,7 +475,6 @@ static NSArray *animationSelectorsForUIView = nil;
             for (NSString *selector in animationSelectorsForUIView) {
                 NSString *setter = NSStringFromSelector(operation.boundSetter);
                 if ([selector isEqualToString:setter]) {
-                    NSLog(@"Using UIView Animation for %@", NSStringFromSelector(operation.boundSetter));
                     operation.canUseBuiltAnimation = YES;
                     
                     NSString *propertyUnformatted = [selector stringByReplacingCharactersInRange:NSMakeRange(0, 3) withString:@""];

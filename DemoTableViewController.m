@@ -8,6 +8,7 @@
 
 #import "DemoTableViewController.h"
 #import "PPDragDropBadgeView.h"
+#import "TableViewCell.h"
 
 @interface DemoTableViewController ()
 
@@ -20,12 +21,12 @@
     
     self.title = @"PPDragDropBadgeView";
     
-    PPDragDropBadgeView* badge = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    PPDragDropBadgeView* badge = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(self.navigationController.navigationBar.bounds.size.width-50, 10, 25, 25)];
     badge.text = @"8";
+    badge.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:badge];
-    
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"reuseIdentifier"];
+    [self.navigationController.navigationBar addSubview:badge];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:nil] forCellReuseIdentifier:@"reuseIdentifier"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,21 +41,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
     
-    cell.textLabel.text = @"BadgeView";
-    
-    
-    PPDragDropBadgeView* badge = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(0, 0, 20, 20) dragdropCompletion:^{
-        NSLog(@"Drag Done");
-    }];
-    
-    badge.text = [NSString stringWithFormat:@"%lu", indexPath.row];
-    cell.accessoryView = badge;
-    
+    cell.badgeView.text = [NSString stringWithFormat:@"%lu", indexPath.row+1];
+    cell.xibBadgeView.text = [NSString stringWithFormat:@"%lu", indexPath.row+1];
     return cell;
 }
-
-
 
 @end

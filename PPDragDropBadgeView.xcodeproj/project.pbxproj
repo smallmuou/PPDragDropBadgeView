@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E413E6C41BE0ABDF00E08EC1 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E413E6C21BE0ABDF00E08EC1 /* DemoViewController.m */; };
+		E413E6C51BE0ABDF00E08EC1 /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E413E6C31BE0ABDF00E08EC1 /* DemoViewController.xib */; };
 		E44A2D8C1B0D97ED00C0A7D6 /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44A2D8A1B0D97ED00C0A7D6 /* DemoTableViewController.m */; };
 		E44A2D8D1B0D97ED00C0A7D6 /* DemoTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E44A2D8B1B0D97ED00C0A7D6 /* DemoTableViewController.xib */; };
 		E49E17FD1AC8F5F3008C3009 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E17FC1AC8F5F3008C3009 /* main.m */; };
@@ -18,6 +20,8 @@
 		E49E18341AC8F818008C3009 /* PPDragDropBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E182D1AC8F818008C3009 /* PPDragDropBadgeView.m */; };
 		E49E18351AC8F818008C3009 /* PRTween.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E18301AC8F818008C3009 /* PRTween.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E49E18361AC8F818008C3009 /* PRTweenTimingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E18321AC8F818008C3009 /* PRTweenTimingFunctions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E4CD20AB1BE12A0B001401E6 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4CD20A91BE12A0B001401E6 /* TableViewCell.m */; };
+		E4CD20AC1BE12A0B001401E6 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4CD20AA1BE12A0B001401E6 /* TableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +35,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E413E6C11BE0ABDF00E08EC1 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		E413E6C21BE0ABDF00E08EC1 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		E413E6C31BE0ABDF00E08EC1 /* DemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoViewController.xib; sourceTree = "<group>"; };
 		E44A2D891B0D97ED00C0A7D6 /* DemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoTableViewController.h; path = ../DemoTableViewController.h; sourceTree = "<group>"; };
 		E44A2D8A1B0D97ED00C0A7D6 /* DemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DemoTableViewController.m; path = ../DemoTableViewController.m; sourceTree = "<group>"; };
 		E44A2D8B1B0D97ED00C0A7D6 /* DemoTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DemoTableViewController.xib; path = ../DemoTableViewController.xib; sourceTree = "<group>"; };
@@ -51,6 +58,9 @@
 		E49E18301AC8F818008C3009 /* PRTween.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTween.m; sourceTree = "<group>"; };
 		E49E18311AC8F818008C3009 /* PRTweenTimingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTweenTimingFunctions.h; sourceTree = "<group>"; };
 		E49E18321AC8F818008C3009 /* PRTweenTimingFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTweenTimingFunctions.m; sourceTree = "<group>"; };
+		E4CD20A81BE12A0B001401E6 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		E4CD20A91BE12A0B001401E6 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		E4CD20AA1BE12A0B001401E6 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +105,12 @@
 				E49E182A1AC8F818008C3009 /* PPDragDropBadgeView */,
 				E49E17FE1AC8F5F3008C3009 /* AppDelegate.h */,
 				E49E17FF1AC8F5F3008C3009 /* AppDelegate.m */,
+				E413E6C11BE0ABDF00E08EC1 /* DemoViewController.h */,
+				E413E6C21BE0ABDF00E08EC1 /* DemoViewController.m */,
+				E413E6C31BE0ABDF00E08EC1 /* DemoViewController.xib */,
+				E4CD20A81BE12A0B001401E6 /* TableViewCell.h */,
+				E4CD20A91BE12A0B001401E6 /* TableViewCell.m */,
+				E4CD20AA1BE12A0B001401E6 /* TableViewCell.xib */,
 				E44A2D891B0D97ED00C0A7D6 /* DemoTableViewController.h */,
 				E44A2D8A1B0D97ED00C0A7D6 /* DemoTableViewController.m */,
 				E44A2D8B1B0D97ED00C0A7D6 /* DemoTableViewController.xib */,
@@ -234,9 +250,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E49E180B1AC8F5F3008C3009 /* LaunchScreen.xib in Resources */,
+				E4CD20AC1BE12A0B001401E6 /* TableViewCell.xib in Resources */,
 				E49E18081AC8F5F3008C3009 /* Images.xcassets in Resources */,
 				E44A2D8D1B0D97ED00C0A7D6 /* DemoTableViewController.xib in Resources */,
 				E49E18331AC8F818008C3009 /* PPDragDropBadgeView.bundle in Resources */,
+				E413E6C51BE0ABDF00E08EC1 /* DemoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +277,8 @@
 				E49E18341AC8F818008C3009 /* PPDragDropBadgeView.m in Sources */,
 				E44A2D8C1B0D97ED00C0A7D6 /* DemoTableViewController.m in Sources */,
 				E49E18001AC8F5F3008C3009 /* AppDelegate.m in Sources */,
+				E4CD20AB1BE12A0B001401E6 /* TableViewCell.m in Sources */,
+				E413E6C41BE0ABDF00E08EC1 /* DemoViewController.m in Sources */,
 				E49E17FD1AC8F5F3008C3009 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -28,6 +28,14 @@
 
 #import <UIKit/UIKit.h>
 
+/* @Note please use addSubview to add PPDragDropBadgeView or configure with xib or storyboard */
+
+/**
+ * A badge view support drag and drop.
+ *
+ * @Note please use addSubview to add PPDragDropBadgeView or configure with xib or storyboard.
+ * currently, not support like tableViewCell.accessoryView = badge or navigationItem.rightBarButtonItem=badge.
+ */
 @interface PPDragDropBadgeView : UIView
 
 /** return the version of PPDragDropBadgeView */

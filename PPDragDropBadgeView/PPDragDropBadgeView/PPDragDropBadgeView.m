@@ -57,6 +57,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     CGSize                  _size;              //圆大小
     CGPoint                 _originPoint;       //源点
     CGFloat                 _radius;            //圆半径
+    BOOL                    _padding;           //配置内边距
     
     CGPoint                 _fromPoint;
     CGPoint                 _toPoint;
@@ -90,7 +91,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 }
 
 - (void)awakeFromNib {
-    NSLog(@"awakeFromNib...");
+    _padding = YES;
     [self setup];
 }
 
@@ -111,14 +112,18 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 - (void)setup {
     //为了便于拖拽，扩大空间区域
     _size = self.frame.size;
-    CGRect wapperFrame = self.frame;
-    wapperFrame.origin.x -= kPaddingSize;
-    wapperFrame.origin.y -= kPaddingSize;
-    wapperFrame.size.width += kPaddingSize*2;
-    wapperFrame.size.height += kPaddingSize*2;
-    self.frame = wapperFrame;
-
-    self.backgroundColor = [UIColor blueColor];
+    
+    if (!_padding) {
+        CGRect wapperFrame = self.frame;
+        wapperFrame.origin.x -= kPaddingSize;
+        wapperFrame.origin.y -= kPaddingSize;
+        wapperFrame.size.width += kPaddingSize*2;
+        wapperFrame.size.height += kPaddingSize*2;
+        self.frame = wapperFrame;
+        _padding = YES;
+    }
+    
+    self.backgroundColor = [UIColor clearColor];
     
     _tintColor = kDefaultTintColor;
     _hiddenWhenZero = YES;
@@ -160,6 +165,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
     [self reset];
 }
 

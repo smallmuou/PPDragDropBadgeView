@@ -10,4 +10,6 @@
 
 @interface DemoTableViewController : UITableViewController
 
+@property (nonatomic, strong) NSArray* tableData;
+
 @end

@@ -18,9 +18,7 @@
     }];
     
     self.badgeView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-//    [self addSubview:self.badgeView];
-    
-    self.xibBadgeView.text = @"12";
+    [self addSubview:self.badgeView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

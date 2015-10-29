@@ -12,6 +12,7 @@
 
 @interface DemoTableViewController ()
 
+
 @end
 
 @implementation DemoTableViewController
@@ -19,14 +20,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"PPDragDropBadgeView";
-    
-    PPDragDropBadgeView* badge = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(self.navigationController.navigationBar.bounds.size.width-50, 10, 25, 25)];
-    badge.text = @"8";
-    badge.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-    
-    [self.navigationController.navigationBar addSubview:badge];
     [self.tableView registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:nil] forCellReuseIdentifier:@"reuseIdentifier"];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"reuseIdentifier1"];
+    
+    self.tableData = @[
+                       @{
+                           @"section":@"addSubview",
+                           @"identifier":@"reuseIdentifier",
+                           },
+                       @{
+                           @"section":@"accessoryView",
+                           @"identifier":@"reuseIdentifier1",
+                           },
+                       ];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,14 +43,30 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return [self.tableData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+    NSDictionary* info = self.tableData[indexPath.row];
     
-    cell.badgeView.text = [NSString stringWithFormat:@"%lu", indexPath.row+1];
-    cell.xibBadgeView.text = [NSString stringWithFormat:@"%lu", indexPath.row+1];
+    
+    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:info[@"identifier"] forIndexPath:indexPath];
+    cell.textLabel.text = info[@"section"];
+    if ([info[@"identifier"] isEqualToString:@"reuseIdentifier"]) {
+        cell.badgeView.text = [NSString stringWithFormat:@"%lu", indexPath.row+1];
+    } else {
+        //accessoryView
+        PPDragDropBadgeView* badge = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(0, 0, 25, 25) dragdropCompletion:^{
+            NSLog(@"Drag Drop Done.");
+        }];
+        badge.text = [NSString stringWithFormat:@"%lu", indexPath.row+1];
+        
+        //Please add to container first
+        UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+        [container addSubview:badge];
+        cell.accessoryView = container;
+    }
+    
     return cell;
 }
 

@@ -7,8 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "DemoTableViewController.h"
-#import "DemoViewController.h"
+#import "MenuViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,8 +21,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    DemoTableViewController* dvc = [[DemoTableViewController alloc] initWithNibName:@"DemoTableViewController" bundle:nil];
-    
+    MenuViewController* dvc = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
     UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:dvc];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];

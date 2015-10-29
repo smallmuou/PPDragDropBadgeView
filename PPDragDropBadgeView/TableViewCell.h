@@ -13,6 +13,4 @@
 
 @property (nonatomic, strong) PPDragDropBadgeView* badgeView;
 
-@property (nonatomic, weak) IBOutlet PPDragDropBadgeView* xibBadgeView;
-
 @end

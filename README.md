@@ -37,7 +37,23 @@ badgeView.text = @"6";
 	@property (nonatomic, strong) NSString* text;
 </pre>
 
+### Note
+<font color="FF0000">you must use addSubview instead of directly use it</font>. like 
+<pre>
+PPDragDropBadgeView* badge = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(10, 10, 25, 25)];
+badge.text = @"8";
+
+//<font color="FF0000">you must add to container first instead of [[UIBarButtonItem alloc] initWithCustomView:badge]</font>
+UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+container.backgroundColor = [UIColor clearColor];
+[container addSubview:badge];
+
+self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:container];</pre>
+
 ### History
+* v2.1 (October 29, 2015)
+	* Fix bug, it can on the top view some case.
+	* Fix bug, when drag will crash sometime.
 * v2.0 (July 2, 2015)
 	* Fix bug, it can scroll tableview when badage in cell.
 * v1.2 (June 18, 2015)

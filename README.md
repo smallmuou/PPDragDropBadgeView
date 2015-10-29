@@ -38,12 +38,12 @@ badgeView.text = @"6";
 </pre>
 
 ### Note
-<font color="FF0000">you must use addSubview instead of directly use it</font>. like 
+you must use addSubview instead of directly use it. like 
 <pre>
 PPDragDropBadgeView* badge = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(10, 10, 25, 25)];
 badge.text = @"8";
 
-//<font color="FF0000">you must add to container first instead of [[UIBarButtonItem alloc] initWithCustomView:badge]</font>
+//you must add to container first instead of [[UIBarButtonItem alloc] initWithCustomView:badge]
 UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
 container.backgroundColor = [UIColor clearColor];
 [container addSubview:badge];

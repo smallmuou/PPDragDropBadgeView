@@ -9,7 +9,11 @@
 #import "SimpleViewController.h"
 #import "PPDragDropBadgeView.h"
 
-@interface SimpleViewController ()
+@interface SimpleViewController () {
+    PPDragDropBadgeView* _badgeView;
+    PPDragDropBadgeView* _badgeView1;
+    
+}
 
 @end
 
@@ -20,23 +24,27 @@
     // Do any additional setup after loading the view from its nib.
     
     {
-        PPDragDropBadgeView* badge = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(50, 100, 25, 25) dragdropCompletion:^{
+        _badgeView = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(50, 100, 25, 25) dragdropCompletion:^{
             NSLog(@"Drag Drop Done.");
         }];
         
-        badge.text = @"8";
-        [self.view addSubview:badge];
+        _badgeView.text = @"8";
+        [self.view addSubview:_badgeView];
     }
     
     {
-        PPDragDropBadgeView* badge = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(50, 50, 25, 25) dragdropCompletion:^{
+        _badgeView1 = [[PPDragDropBadgeView alloc] initWithFrame:CGRectMake(50, 50, 25, 25) dragdropCompletion:^{
             NSLog(@"Drag Drop Done.");
         }];
         
-        badge.text = @"8";
-        [self.container addSubview:badge];
+        _badgeView1.text = @"8";
+        [self.container addSubview:_badgeView1];
     }
-    
+}
+
+- (IBAction)onResetButtonPressed:(id)sender {
+    _badgeView.text = @"6";
+    _badgeView1.text = @"9";
 }
 
 - (void)didReceiveMemoryWarning {

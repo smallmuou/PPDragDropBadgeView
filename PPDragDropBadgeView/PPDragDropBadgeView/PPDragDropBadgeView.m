@@ -207,7 +207,8 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
     _fromPoint = _originPoint;
     _toPoint = _fromPoint;
     _maxDistance = kMaxDistanceScaleCoefficient*_radius;
-
+    _beEnableDragDrop = YES;
+    
     [self updateRadius];
 }
 
@@ -323,6 +324,8 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 
 #pragma mark - Touch
 - (void)onGestureAction:(UIPanGestureRecognizer* )gesture {
+    if (!_beEnableDragDrop) return;
+    
     CGPoint point = [gesture locationInView:self];
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan: {
@@ -342,7 +345,6 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 
 - (void)touchesBegan:(CGPoint)point {
     _missed = NO;
-    _beEnableDragDrop = YES;
     [self becomeUpper];
 }
 
@@ -398,8 +400,6 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 }
 
 - (void)touchesEnded:(CGPoint)point {
-    if (!_beEnableDragDrop) return;
-    
     if (!_missed) {
         _elasticBeginPoint = _toPoint;
         _distance = distanceBetweenPoints(_fromPoint, _toPoint);
@@ -421,6 +421,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
             _fromRadius = 0;
             _textLabel.hidden = YES;
             [_bombImageView startAnimating];
+            _beEnableDragDrop = NO;
             _activeTweenOperation.updateSelector = nil;
             [[PRTween sharedInstance] removeTweenOperation:_activeTweenOperation];
             
@@ -438,8 +439,6 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 }
 
 - (void)touchesMoved:(CGPoint)point {
-    if (!_beEnableDragDrop) return;
-    
     CGFloat r = distanceBetweenPoints(_fromPoint, point);
     if (_missed) {
         _activeTweenOperation.updateSelector = nil;

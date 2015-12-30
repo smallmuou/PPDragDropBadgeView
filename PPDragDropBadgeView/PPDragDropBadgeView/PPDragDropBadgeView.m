@@ -386,7 +386,6 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
 }
 
 - (void)resignUpper {
-    [_overlayView removeFromSuperview];
     self.center = [_overlayView convertPoint:self.center toView:_originSuperView];
     
     if ([_originSuperView isKindOfClass:[UITableViewCell class]]
@@ -396,6 +395,7 @@ CGFloat distanceBetweenPoints (CGPoint p1, CGPoint p2) {
         [_originSuperView addSubview:self];
     }
     
+    [_overlayView removeFromSuperview];
     _overlayView = nil;
 }
 
